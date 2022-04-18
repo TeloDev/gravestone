@@ -12,8 +12,8 @@ import de.maxhenkel.gravestone.proxy.CommonProxy;
 @Mod(modid = Main.MODID, version = Main.VERSION, acceptedMinecraftVersions=Main.MC_VERSION)
 public class Main{
 	
-    public static final String MODID = "gravestone";
-    public static final String VERSION = "0.7.10.3";
+    public static final String MODID = "GRADLETOKEN_MODID";
+    public static final String VERSION = "GRADLETOKEN_VERSION";
     public static final String MC_VERSION = "[1.7.10]";
     public static final int VERSION_NUMBER = 27;
 
