@@ -32,13 +32,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
 public class CommonProxy {
-
+	private Configuration cfg = null;
 	public void preinit(FMLPreInitializationEvent event) {
-		Configuration c=null;
     	try{
-			c=new Configuration(event.getSuggestedConfigurationFile());
-			Config config=new Config(c);
-			config.setInstance();
+			cfg = new Configuration(event.getSuggestedConfigurationFile());
 		}catch(Exception e){
 			Log.w("Could not create config file: " +e.getMessage());
 		}
@@ -47,6 +44,13 @@ public class CommonProxy {
 	}
 
 	public void init(FMLInitializationEvent event) {
+		try{
+			Config config=new Config(cfg);
+			config.setInstance();
+		}catch(Exception e){
+			Log.w("Could not create config file: " +e.getMessage());
+		}
+		
 		MinecraftForge.EVENT_BUS.register(new UpdateCheckEvents());
 		MinecraftForge.EVENT_BUS.register(new DeathEvents());
 		MinecraftForge.EVENT_BUS.register(new BlockEvents());

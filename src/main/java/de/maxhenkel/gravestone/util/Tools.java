@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 import de.maxhenkel.gravestone.Config;
+import de.maxhenkel.gravestone.Log;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -106,14 +107,12 @@ public class Tools {
 	public static Block getBlock(String name) {
 		try {
 				Block b = (Block) Block.blockRegistry.getObject(name);
-				if (b.equals(Blocks.air)) {
-					return null;
-				} else {
+				if (!b.equals(Blocks.air)) {
 					return b;
 				}
-		} catch (Exception e) {
-			return null;
-		}
+		} catch (Exception e) {}
+		Log.w("Failed to get block from name: " + name);
+		return null;
 	}
 
 	public static void dropInventoryItems(World worldIn, BlockPos pos, IInventory inv) {
